@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>INAI Cloud — Build AI Agents. Ship Fast.</title>
+<meta name="description" content="GPU-accelerated AI agent platform. Deploy to WhatsApp, web, Slack in minutes. Africa-native. Model-agnostic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08080C;--card:#0F0F15;--card2:#121220;--border:#1A1A28;--blt:#252540;--tx:#E4E4EE;--tx2:#9090A8;--tx3:#55556E;--ac:#76B900;--acd:rgba(118,185,0,.12);--acg:rgba(118,185,0,.22);--blue:#0EA5E9;--purple:#818CF8;--white:#FAFAFF;--green:#34D399;--amber:#F59E0B;--red:#EF4444}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+::selection{background:rgba(118,185,0,.15)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.m{font-family:'Fira Code',monospace}
+.w{max-width:960px;margin:0 auto;padding:0 36px}
+body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px}
+@keyframes hi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes sh{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes bk{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes pr{0%{transform:scale(1);opacity:.55}100%{transform:scale(2.4);opacity:0}}
+@keyframes sl{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.rv{opacity:0;transform:translateY(14px);transition:all .55s cubic-bezier(.22,1,.36,1)}.rv.v{opacity:1;transform:none}
+.tag{font-size:11px;font-weight:600;color:var(--ac);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.ttl{font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-.04em;color:var(--white);line-height:1.06}
+.sub{font-size:15px;color:var(--tx2);margin-top:10px;max-width:460px;line-height:1.55}
+.sep{border-top:1px solid rgba(26,26,40,.25);border-bottom:1px solid rgba(26,26,40,.25)}
+.st{border-top:1px solid rgba(26,26,40,.25)}
+.nl{color:var(--tx3);font-size:13px;font-weight:500;text-decoration:none;transition:color .2s;cursor:pointer}.nl:hover{color:var(--tx)}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;background:rgba(8,8,12,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,26,40,.38)}
+.n-l{display:flex;align-items:center;gap:8px}
+.n-m{width:20px;height:20px;border-radius:5px;background:var(--ac);display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px var(--acd)}
+.n-b{font-weight:700;font-size:14px;color:var(--white);letter-spacing:-.02em}
+.n-r{display:flex;gap:24px;align-items:center}
+.n-c{background:var(--white);color:var(--bg);border:none;border-radius:6px;padding:6px 14px;font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s}.n-c:hover{opacity:.88;transform:translateY(-1px)}
+.n-live{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--green);font-weight:600}
+.n-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pr 2s ease infinite}
+
+/* hero */
+.hero{padding-top:130px;padding-bottom:64px;position:relative}
+.hero-grid{position:absolute;top:0;left:50%;transform:translateX(-50%);width:120%;height:100%;background-image:linear-gradient(rgba(118,185,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(118,185,0,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 30% 20%,#000 0%,transparent 60%);-webkit-mask-image:radial-gradient(ellipse at 30% 20%,#000 0%,transparent 60%);pointer-events:none}
+.hero-in{position:relative;animation:hi .7s ease}
+.bdg{display:inline-flex;align-items:center;gap:8px;padding:4px 12px 4px 5px;background:var(--card);border:1px solid var(--border);border-radius:100px;margin-bottom:24px}
+.bdg-t{background:var(--ac);color:#000;font-size:9px;font-weight:800;padding:2px 7px;border-radius:100px;letter-spacing:.06em}
+.bdg-s{font-size:12px;color:var(--tx2);font-weight:500}
+.ld{position:relative;display:inline-block;width:6px;height:6px}.ld::before{content:'';position:absolute;inset:0;background:var(--green);border-radius:50%}.ld::after{content:'';position:absolute;inset:-3px;border:1px solid var(--green);border-radius:50%;animation:pr 2s ease infinite}
+h1{font-size:clamp(40px,5.5vw,66px);font-weight:800;line-height:1.02;letter-spacing:-.045em;color:var(--white);max-width:600px}
+.shm{background:linear-gradient(90deg,var(--ac),var(--blue),var(--ac));background-size:200% auto;animation:sh 3.5s linear infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.h-sub{font-size:17px;line-height:1.6;color:var(--tx2);max-width:440px;margin-top:18px}
+.h-btns{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap}
+.bp{background:var(--ac);color:#000;border:none;border-radius:7px;padding:11px 22px;font-size:13.5px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .2s;box-shadow:0 0 18px var(--acd)}.bp:hover{box-shadow:0 0 28px var(--acg);transform:translateY(-1px)}
+.bs{background:transparent;color:var(--tx);border:1px solid var(--border);border-radius:7px;padding:11px 22px;font-size:13.5px;font-weight:500;font-family:inherit;cursor:pointer;transition:border-color .2s}.bs:hover{border-color:var(--tx3)}
+.tb{display:flex;gap:16px;margin-top:28px;flex-wrap:wrap;align-items:center}
+.tb span{font-size:11px;color:var(--tx3);font-weight:500;display:flex;align-items:center;gap:5px}
+.td{width:3px;height:3px;border-radius:50%}
+.hero-note{margin-top:16px;display:flex;align-items:center;gap:6px;font-size:11px;color:var(--tx3)}
+.hero-note b{color:var(--green);font-weight:600}
+
+/* terminal */
+.trm{margin-top:48px;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+.trm-b{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.01)}
+.trm-d{width:9px;height:9px;border-radius:50%;opacity:.75}
+.trm-c{padding:16px 18px;font-size:12.5px;line-height:2}
+
+/* social proof */
+.sp-bar{padding:20px 0;overflow:hidden;position:relative}
+.sp-bar::before,.sp-bar::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2}
+.sp-bar::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.sp-bar::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.sp-track{display:flex;gap:48px;align-items:center;animation:sl 30s linear infinite;width:max-content}
+.sp-item{font-size:13px;font-weight:600;color:var(--tx3);white-space:nowrap;opacity:.5;letter-spacing:.02em}
+.sp-label{text-align:center;font-size:10px;color:var(--tx3);margin-bottom:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+
+/* stats */
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:44px 36px}
+.sn{font-size:38px;font-weight:800;color:var(--white);letter-spacing:-.04em;line-height:1}
+.sl{font-size:12px;color:var(--tx3);margin-top:6px;font-weight:500}
+.sd{font-size:10px;font-weight:600;color:var(--green);margin-top:4px;display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:100px;background:rgba(52,211,153,.06)}
+
+/* ROI callout */
+.roi{padding:48px 36px;text-align:center}
+.roi-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:36px 32px;position:relative;overflow:hidden}
+.roi-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top,rgba(118,185,0,.03),transparent 60%);pointer-events:none}
+.roi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px;position:relative}
+.roi-item{text-align:center}
+.roi-num{font-size:32px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.roi-label{font-size:11px;color:var(--tx2);margin-top:4px;line-height:1.4}
+.roi-vs{font-size:10px;color:var(--tx3);margin-top:2px}
+
+/* how it works */
+.hw{padding:80px 36px}
+.hwg{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:40px;position:relative}
+.hwl{position:absolute;top:28px;left:calc(33.33% - 12px);right:calc(33.33% - 12px);height:1px;background:repeating-linear-gradient(90deg,var(--blt),var(--blt) 6px,transparent 6px,transparent 12px)}
+.hws{text-align:center;padding:0 20px;position:relative}
+.hwn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--blt);display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--ac);margin-bottom:16px;background:var(--card);position:relative;z-index:1}
+.hwt{font-size:15px;font-weight:700;color:var(--white);margin-bottom:6px}
+.hwd{font-size:12.5px;color:var(--tx2);line-height:1.55}
+.hwm{display:inline-block;margin-top:10px;font-size:10px;font-weight:600;color:var(--green);background:rgba(52,211,153,.1);padding:2px 8px;border-radius:100px}
+
+/* platform */
+.ps{padding:80px 36px}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:40px}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 24px;transition:all .3s}
+.pc:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.ct{font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:.06em}
+.cn{font-size:20px;font-weight:700;color:var(--white);letter-spacing:-.02em;margin-top:14px;margin-bottom:8px}
+.cd{font-size:13px;color:var(--tx2);line-height:1.55;margin-bottom:20px}
+.cf{display:flex;align-items:center;gap:8px;margin-bottom:9px}.cf span{font-size:12.5px;color:var(--tx2)}
+.ci{flex-shrink:0}
+
+/* integrations */
+.is{padding:80px 36px}
+.ig{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:36px}
+.ic{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 10px;text-align:center;transition:all .25s;cursor:default}.ic:hover{border-color:var(--blt);transform:translateY(-2px)}
+.ii{font-size:22px;margin-bottom:6px}.im{font-size:11px;color:var(--tx2);font-weight:500}
+
+/* tech */
+.ti{padding:64px 36px}
+.tg{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:36px}
+.tc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px 22px;transition:border-color .2s}.tc:hover{border-color:var(--blt)}
+.to{width:6px;height:6px;border-radius:50%;margin-bottom:12px}
+.tc h3{font-size:15px;font-weight:600;color:var(--white);margin-bottom:6px}.tc p{font-size:13px;color:var(--tx2);line-height:1.55}
+
+/* dev */
+.ds{padding:80px 36px}
+.dl{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px;align-items:start}
+.dp{display:flex;flex-direction:column;gap:16px}
+.di{display:flex;gap:12px;align-items:flex-start}
+.dk{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+.di h4{font-size:13.5px;font-weight:600;color:var(--white);margin-bottom:3px}.di p{font-size:12px;color:var(--tx2);line-height:1.5}
+.dc{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.db{padding:8px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.01)}
+.dt{font-size:10.5px;padding:3px 10px;border-radius:4px;cursor:pointer;transition:all .2s}
+.dt.a{background:rgba(118,185,0,.12);color:var(--ac)}.dt:not(.a){color:var(--tx3)}
+.dx{padding:16px 18px;font-size:11.5px;line-height:1.8;overflow-x:auto}
+
+/* security */
+.ss{padding:64px 36px}
+.sg2{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:32px}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 16px;text-align:center;transition:border-color .2s}.sc:hover{border-color:var(--blt)}
+.sk{font-size:24px;margin-bottom:10px}
+.sc h4{font-size:12.5px;font-weight:600;color:var(--white);margin-bottom:4px}.sc p{font-size:11px;color:var(--tx3);line-height:1.45}
+
+/* cases */
+.cs{padding:80px 36px}
+.cl{margin-top:36px;border-top:1px solid var(--border)}
+.cr{display:grid;grid-template-columns:200px 1fr auto;gap:20px;padding:20px 8px;border-bottom:1px solid var(--border);transition:background .2s;border-radius:6px;margin:0 -8px;align-items:center}
+.cr:hover{background:rgba(15,15,21,.5)}
+.cr h3{font-size:14px;font-weight:600;color:var(--white)}.cr p{font-size:13px;color:var(--tx2);line-height:1.55}
+.cr-tag{font-size:9px;padding:3px 8px;border-radius:100px;font-weight:600;white-space:nowrap}
+
+/* comparison */
+.cps{padding:80px 36px}
+.cpt{margin-top:36px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.cph{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;background:var(--card);border-bottom:1px solid var(--border)}
+.cph>div{padding:14px 18px;font-size:12px;font-weight:600;color:var(--tx2)}.cph>div:first-child{color:var(--tx3)}
+.cph .ch{color:var(--ac);position:relative}.cph .ch::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ac)}
+.cpr{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;border-bottom:1px solid var(--border)}.cpr:last-child{border-bottom:none}
+.cpr>div{padding:12px 18px;font-size:12.5px;color:var(--tx2);display:flex;align-items:center}.cpr>div:first-child{color:var(--tx);font-weight:500}
+.chb{background:rgba(118,185,0,.03)}
+
+/* testimonials */
+.ts{padding:80px 36px}
+.tsg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:36px}
+.tsc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px 20px;transition:border-color .2s}.tsc:hover{border-color:var(--blt)}
+.tss{color:var(--amber);font-size:12px;letter-spacing:2px;margin-bottom:12px}
+.tsq{font-size:13px;color:var(--tx);line-height:1.6;font-style:italic;margin-bottom:16px}
+.tsa{display:flex;align-items:center;gap:10px}
+.tsv{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.tsn{font-size:12px;font-weight:600;color:var(--white)}.tsr{font-size:10.5px;color:var(--tx3)}
+.tsc-metric{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;align-items:center;gap:6px;font-size:10px}
+.tsc-metric b{color:var(--green);font-weight:700;font-size:14px}
+
+/* pricing */
+.pri{padding:80px 36px}
+.prg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:36px}
+.prc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px 18px;position:relative;transition:all .3s}
+.prc:hover{transform:translateY(-2px)}
+.prc.ac{border-color:rgba(118,185,0,.21)}
+.prc.pop{border-color:rgba(14,165,233,.21)}
+.prw{position:absolute;top:-1px;left:16px;right:16px;height:2px;background:linear-gradient(90deg,transparent,var(--ac),transparent)}
+.prw-bl{background:linear-gradient(90deg,transparent,var(--blue),transparent)}
+.pr-pop{position:absolute;top:-10px;right:16px;font-size:8px;font-weight:700;padding:2px 8px;border-radius:100px;letter-spacing:.05em}
+.prn{font-size:14px;font-weight:600;color:var(--white);margin-bottom:2px}
+.prr{display:flex;align-items:baseline;gap:3px;margin:10px 0 4px}
+.prp{font-size:30px;font-weight:800;color:var(--white);letter-spacing:-.04em}
+.prs{font-size:12px;color:var(--tx3)}
+.pr-desc{font-size:11px;color:var(--tx3);margin-bottom:14px;line-height:1.4}
+.prf{display:flex;align-items:center;gap:8px;margin-bottom:7px}.prf span{font-size:11.5px;color:var(--tx2)}
+.prb{margin-top:16px;width:100%;padding:9px 0;border-radius:7px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s}
+.prb.p{background:var(--ac);color:#000;border:none}.prb.p:hover{box-shadow:0 0 16px var(--acd)}
+.prb.bl{background:var(--blue);color:#000;border:none}
+.prb.s{background:transparent;color:var(--tx);border:1px solid var(--border)}.prb.s:hover{border-color:var(--tx3)}
+.pr-note{font-size:9px;color:var(--tx3);margin-top:8px;text-align:center}
+
+/* team */
+.team{padding:80px 36px}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:36px}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px 20px;text-align:center;transition:all .3s}.team-card:hover{border-color:var(--blt);transform:translateY(-2px)}
+.team-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;margin:0 auto 12px;position:relative}
+.team-avatar::after{content:'';position:absolute;inset:-2px;border-radius:50%;border:1.5px solid transparent;background:conic-gradient(from 180deg,var(--ac),var(--blue),var(--purple),var(--ac)) border-box;mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);mask-composite:exclude;-webkit-mask-composite:xor;opacity:.3;transition:opacity .3s}
+.team-card:hover .team-avatar::after{opacity:.7}
+.team-name{font-size:13px;font-weight:700;color:var(--white)}.team-role{font-size:10.5px;color:var(--tx2);margin-top:2px;line-height:1.3}
+
+/* faq */
+.fq{padding:80px 36px}
+.fi{border-bottom:1px solid var(--border)}
+.fqq{padding:18px 0;font-size:14px;font-weight:600;color:var(--white);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .2s;user-select:none}.fqq:hover{color:var(--ac)}
+.fa{font-size:18px;color:var(--tx3);transition:transform .3s;font-weight:300}.fi.o .fa{transform:rotate(45deg)}
+.fqa{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease}.fi.o .fqa{max-height:200px;padding-bottom:18px}
+.fqa p{font-size:13px;color:var(--tx2);line-height:1.6}
+
+/* cta */
+.cta{padding:0 36px 80px}
+.ctx{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:56px 40px;text-align:center;position:relative;overflow:hidden}
+.ctg{position:absolute;inset:0;background:radial-gradient(ellipse at top,rgba(118,185,0,.03),transparent 60%);pointer-events:none}
+.cti{position:relative}
+.ctt{font-size:clamp(26px,3.5vw,40px);font-weight:800;letter-spacing:-.04em;color:var(--white)}
+.cts{font-size:15px;color:var(--tx2);margin-top:10px;max-width:360px;margin-left:auto;margin-right:auto;line-height:1.55}
+.ctf{margin-top:28px;display:flex;gap:8px;justify-content:center;max-width:380px;margin-left:auto;margin-right:auto}
+.cte{flex:1;padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:7px;color:var(--tx);font-size:13px;font-family:inherit;outline:none;transition:border-color .2s}.cte:focus{border-color:var(--ac)}
+.ctb{background:var(--white);color:var(--bg);border:none;border-radius:7px;padding:10px 20px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer}
+.ctk{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:28px}.ctk span{font-size:14px;color:var(--green);font-weight:600}
+.dlv{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(52,211,153,.5);flex-shrink:0}
+footer{padding:32px 36px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.fl{display:flex;align-items:center;gap:6px}
+.fo{width:16px;height:16px;border-radius:4px;background:var(--ac);display:flex;align-items:center;justify-content:center}
+.fn{font-weight:600;font-size:12px;color:var(--tx2)}
+.fk{display:flex;gap:20px}.fk a{font-size:11.5px}
+.fc{font-size:10px;color:var(--tx3)}
+@media(max-width:768px){.sg{grid-template-columns:repeat(2,1fr)}.pg,.tsg,.prg,.team-grid{grid-template-columns:1fr}.tg,.dl{grid-template-columns:1fr}.cr{grid-template-columns:1fr;gap:6px}.hwg{grid-template-columns:1fr;gap:32px}.hwl{display:none}.ig{grid-template-columns:repeat(3,1fr)}.sg2{grid-template-columns:repeat(2,1fr)}.cph,.cpr{grid-template-columns:1.2fr 1fr 1fr 1fr}.cph>div,.cpr>div{padding:10px 10px;font-size:11px}.roi-grid{grid-template-columns:1fr}.prg{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- 1. NAV -->
+<nav>
+  <div class="n-l">
+    <div class="n-m"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M3 8h7M3 12h9" stroke="#000" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+    <span class="n-b">INAI</span>
+  </div>
+  <div class="n-r">
+    <span class="nl">Platform</span><span class="nl">Docs</span><span class="nl">Pricing</span>
+    <div class="n-live"><div class="n-dot"></div><span style="font-size:9px">All systems live</span></div>
+    <button class="n-c">Start free →</button>
+  </div>
+</nav>
+
+<!-- 2. HERO -->
+<section class="w hero">
+  <div class="hero-grid"></div>
+  <div class="hero-in">
+    <div class="bdg">
+      <span class="bdg-t">NVIDIA INCEPTION</span>
+      <span class="bdg-s"><span class="ld"></span>&nbsp; GPU-accelerated AI agent platform</span>
+    </div>
+    <h1>Build AI agents.<br><span class="shm">Ship fast.</span></h1>
+    <p class="h-sub">The enterprise platform for conversational AI agents. GPU-accelerated. Model-agnostic. Deploy to WhatsApp, web, Slack, or voice — same afternoon. Made for Africa. Scales anywhere.</p>
+    <div class="h-btns">
+      <button class="bp">Start building — it's free</button>
+      <button class="bs">See it in action →</button>
+    </div>
+    <div class="tb">
+      <span><span class="td" style="background:var(--ac)"></span>NVIDIA Inception</span>
+      <span><span class="td" style="background:var(--tx3)"></span>SOC 2 Type II</span>
+      <span><span class="td" style="background:var(--tx3)"></span>NDPR Compliant</span>
+      <span><span class="td" style="background:var(--tx3)"></span>99.9% Uptime</span>
+    </div>
+    <div class="hero-note">🔒 No credit card required · <b>Free tier forever</b> · Cancel anytime</div>
+  </div>
+  <div class="rv" data-d="250">
+    <div class="trm">
+      <div class="trm-b"><span class="trm-d" style="background:#FF5F57"></span><span class="trm-d" style="background:#FEBC2E"></span><span class="trm-d" style="background:#28C840"></span><span class="m" style="font-size:10.5px;color:var(--tx3);margin-left:8px">inai-cli</span><span class="m" style="font-size:9px;color:var(--tx3);margin-left:auto">Lagos DC · p95: 89ms</span></div>
+      <div class="m trm-c">
+        <div style="color:var(--tx3)"><span style="color:var(--ac)">$</span> inai deploy --agent support-bot --model claude-sonnet --gpu a100</div>
+        <div style="color:var(--green)">✓ Trained on 12K docs · 3 channels · GPU inference active</div>
+        <div style="color:var(--tx)">→ <span style="color:var(--ac)">live</span> at app.inai.cloud/agents/support-bot</div>
+        <span style="color:var(--tx3);animation:bk 1.1s infinite">▌</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. LOGO CLOUD -->
+<div class="sep">
+  <div class="sp-bar"><div class="sp-label">Trusted by teams across Africa & beyond</div><div class="sp-track" id="logos"></div></div>
+</div>
+
+<!-- 4. STATS -->
+<div class="sep"><div class="w"><div class="sg" id="stats"></div></div></div>
+
+<!-- 5. ROI CALLOUT -->
+<section class="w roi">
+  <div class="rv roi-box">
+    <p class="m tag">The bottom line</p>
+    <h2 style="font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--white);letter-spacing:-.03em">What changes when you switch to INAI</h2>
+    <div class="roi-grid">
+      <div class="roi-item"><div class="roi-num" style="color:var(--green)">₦0</div><div class="roi-label">Infrastructure cost on free tier</div><div class="roi-vs">vs. ₦5M+/yr building in-house</div></div>
+      <div class="roi-item"><div class="roi-num" style="color:var(--ac)">1 day</div><div class="roi-label">From zero to live agent</div><div class="roi-vs">vs. 6-12 months in-house</div></div>
+      <div class="roi-item"><div class="roi-num" style="color:var(--blue)">63%</div><div class="roi-label">Average ticket deflection</div><div class="roi-vs">= fewer hires, lower OPEX</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. HOW IT WORKS -->
+<section class="w hw"><div class="rv"><p class="m tag">How it works</p><h2 class="ttl">Live in three steps</h2><p class="sub">No ML team. No infrastructure. No six-month timelines.</p></div><div class="hwg"><div class="hwl"></div><div class="rv hws"><div class="hwn">1</div><div class="hwt">Connect your data</div><div class="hwd">Upload docs, connect APIs, point to your knowledge base. We chunk, embed, and index.</div><span class="hwm">~5 minutes</span></div><div class="rv hws" data-d="100"><div class="hwn">2</div><div class="hwt">Configure & test</div><div class="hwd">Pick a model, set tone and guardrails, define escalation rules. Test live in sandbox.</div><span class="hwm">~30 minutes</span></div><div class="rv hws" data-d="200"><div class="hwn">3</div><div class="hwt">Deploy everywhere</div><div class="hwd">Go live on WhatsApp, web, Slack, voice, or SMS. Monitor conversations in real-time.</div><span class="hwm">Instant</span></div></div></section>
+
+<!-- 7. PLATFORM -->
+<section class="w ps st"><div class="rv"><p class="m tag">Platform</p><h2 class="ttl">Three products. One stack.</h2><p class="sub">Whether you're an ops team that needs no-code, or an engineering team that wants full API control — same platform.</p></div><div class="pg" id="plat"></div></section>
+
+<!-- 8. INTEGRATIONS -->
+<section class="w is st"><div class="rv"><p class="m tag">Integrations</p><h2 class="ttl">Connects to everything</h2><p class="sub">Native integrations. No middleware. No glue code. Toggle on, go live.</p></div><div class="ig" id="intg"></div></section>
+
+<!-- 9. TECHNOLOGY -->
+<section class="sep"><div class="w ti"><div class="rv"><p class="m tag">Technology</p><h2 class="ttl">GPU-accelerated. Model-agnostic.</h2><p class="sub">Built on NVIDIA infrastructure. Run any model. Optimized for enterprise-scale AI workloads in Africa and globally.</p></div><div class="tg" id="tech"></div></div></section>
+
+<!-- 10. DEVELOPER -->
+<section class="w ds"><div class="rv"><p class="m tag">Developers</p><h2 class="ttl">API-first. Ship in minutes.</h2><p class="sub">RESTful API, Python & Node SDKs, webhooks, full observability. Four lines to a live agent.</p></div><div class="dl"><div class="rv dp"><div class="di"><div class="dk" style="background:rgba(118,185,0,.1);color:var(--ac)">⚡</div><div><h4>Sub-200ms latency</h4><p>GPU-accelerated inference with automatic batching. Faster than any Africa-based alternative.</p></div></div><div class="di"><div class="dk" style="background:rgba(14,165,233,.1);color:var(--blue)">🔗</div><div><h4>Streaming & webhooks</h4><p>Real-time SSE streaming. Webhook events for every conversation lifecycle stage.</p></div></div><div class="di"><div class="dk" style="background:rgba(129,140,248,.1);color:var(--purple)">📊</div><div><h4>Full observability</h4><p>Structured logs, traces, cost tracking per conversation, latency percentiles per agent.</p></div></div><div class="di"><div class="dk" style="background:rgba(52,211,153,.1);color:var(--green)">🧪</div><div><h4>Sandbox + CI/CD</h4><p>Test in sandbox before production. Git-based version control for agent configs.</p></div></div></div><div class="rv dc" data-d="120"><div class="db"><span class="m dt a">Python</span><span class="m dt">cURL</span><span class="m dt">Node.js</span></div><pre class="m dx" style="color:var(--tx2);margin:0"><span style="color:var(--purple)">import</span> <span style="color:var(--tx)">inai</span>
+
+client = inai.Client(<span style="color:var(--green)">api_key</span>=<span style="color:var(--amber)">"sk-..."</span>)
+
+<span style="color:var(--tx3)"># Deploy an agent in 4 lines</span>
+agent = client.agents.create(
+  <span style="color:var(--green)">name</span>=<span style="color:var(--amber)">"support-bot"</span>,
+  <span style="color:var(--green)">model</span>=<span style="color:var(--amber)">"claude-sonnet"</span>,
+  <span style="color:var(--green)">knowledge</span>=[<span style="color:var(--amber)">"./docs"</span>],
+  <span style="color:var(--green)">channels</span>=[<span style="color:var(--amber)">"whatsapp"</span>, <span style="color:var(--amber)">"web"</span>],
+  <span style="color:var(--green)">gpu</span>=<span style="color:var(--amber)">"a100"</span>
+)
+
+<span style="color:var(--purple)">print</span>(agent.url)
+<span style="color:var(--tx3)"># → https://app.inai.cloud/agents/support-bot</span></pre></div></div></section>
+
+<!-- 11. SECURITY -->
+<section class="sep"><div class="w ss"><div class="rv"><p class="m tag">Security & Compliance</p><h2 class="ttl">Enterprise-grade. Africa-compliant.</h2><p class="sub">Your data stays in Africa. Your compliance stays current. No exceptions.</p></div><div class="sg2" id="secu"></div></div></section>
+
+<!-- 12. USE CASES -->
+<section class="w cs"><div class="rv"><p class="m tag">Use Cases</p><h2 class="ttl">Built for how Africa works</h2><p class="sub">WhatsApp-first. Multilingual. Designed for the workflows that matter here.</p></div><div class="cl" id="cases"></div></section>
+
+<!-- 13. COMPARISON -->
+<section class="w cps st"><div class="rv"><p class="m tag">Why INAI</p><h2 class="ttl">Skip 6 months of build time</h2></div><div class="rv cpt" data-d="80"><div class="cph"><div></div><div class="ch">INAI</div><div>In-house</div><div>Global platforms</div></div><div id="comp"></div></div></section>
+
+<!-- 14. TESTIMONIALS -->
+<section class="w ts st"><div class="rv"><p class="m tag">Results</p><h2 class="ttl">What teams are shipping</h2><p class="sub">Real operators. Real numbers. No vanity metrics.</p></div><div class="tsg" id="test"></div></section>
+
+<!-- 15. PRICING -->
+<section class="st"><div class="w pri"><div class="rv"><p class="m tag">Pricing</p><h2 class="ttl">Built for African budgets</h2><p class="sub">Start free. No credit card. Scale when your agents start earning their keep.</p></div><div class="prg" id="pric"></div><div class="rv" data-d="200" style="text-align:center;margin-top:20px"><p style="font-size:12px;color:var(--tx3)">All prices in USD. Pay via card, bank transfer, or mobile money. <b style="color:var(--tx2)">Annual billing saves 20%.</b></p></div></div></section>
+
+<!-- 16. TEAM -->
+<section class="w team st">
+  <div class="rv"><p class="m tag">Team</p><h2 class="ttl">The people behind INAI</h2><p class="sub">Engineers and operators building the AI agent infrastructure Africa needs.</p></div>
+  <div class="team-grid">
+    <div class="rv team-card"><div class="team-avatar" style="background:rgba(118,185,0,.1);color:var(--ac)">MO</div><div class="team-name">Mariam Oresi</div><div class="team-role">Founder & DevOps Engineer</div></div>
+    <div class="rv team-card" data-d="70"><div class="team-avatar" style="background:rgba(14,165,233,.1);color:var(--blue)">MU</div><div class="team-name">Mery Ugwu</div><div class="team-role">AI/ML Engineer</div></div>
+    <div class="rv team-card" data-d="140"><div class="team-avatar" style="background:rgba(129,140,248,.1);color:var(--purple)">FI</div><div class="team-name">Francis Igwe</div><div class="team-role">Snr Product Engineer</div></div>
+    <div class="rv team-card" data-d="210"><div class="team-avatar" style="background:rgba(52,211,153,.1);color:var(--green)">OW</div><div class="team-name">Odibe Wellington</div><div class="team-role">Head of Customer Ops</div></div>
+  </div>
+</section>
+
+<!-- 17. FAQ -->
+<section class="w fq st"><div class="rv"><p class="m tag">FAQ</p><h2 class="ttl">Common questions</h2></div><div id="faqs" style="margin-top:36px"></div></section>
+
+<!-- 18. CTA -->
+<section class="w cta" style="padding-top:20px"><div class="rv"><div class="ctx"><div class="ctg"></div><div class="cti"><h2 class="ctt">Deploy your first agent today</h2><p class="cts">Free forever tier. No credit card. GPU-accelerated from day one. Cancel never — it's free.</p><div id="ctf" class="ctf"><input id="cte" type="email" class="cte" placeholder="work@company.com"><button class="ctb" onclick="sub()">Get access</button></div><div id="ctk" class="ctk" style="display:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span>Check your inbox.</span></div></div></div></div></section>
+
+<!-- 19. FOOTER -->
+<footer class="w st">
+  <div class="fl"><div class="fo"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M3 8h7M3 12h9" stroke="#000" stroke-width="2.2" stroke-linecap="round"/></svg></div><span class="fn">INAI</span></div>
+  <div class="fk"><a href="#" class="nl">GitHub</a><a href="#" class="nl">Twitter</a><a href="#" class="nl">LinkedIn</a><a href="#" class="nl">Status</a><a href="#" class="nl">Docs</a></div>
+  <span class="m fc">© 2026 INAI Cloud · Lagos, Nigeria</span>
+</footer>
+
+<script>
+const ck=c=>`<svg class="ci" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+const xk=`<svg class="ci" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--tx3)" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+const gk=ck('var(--green)');
+
+// logos
+const logos=['Flutterwave','MTN','Access Bank','Jumia','Safaricom','Interswitch','Paystack','Andela','Sterling Bank','Kuda','Carbon','Piggyvest'];
+document.getElementById('logos').innerHTML=(logos.concat(logos)).map(l=>`<span class="sp-item">${l}</span>`).join('');
+
+// stats
+document.getElementById('stats').innerHTML=[
+  {n:'63',s:'%',l:'Avg ticket deflection',d:'across all clients'},
+  {n:'12',s:'M+',l:'Conversations handled',d:'and counting'},
+  {n:'40',s:'x',l:'Faster than in-house',d:'days vs. months'},
+  {n:'89',s:'ms',l:'P95 inference latency',d:'from Lagos DC'},
+].map((s,i)=>`<div class="rv" data-d="${i*50}"><div class="sn"><span class="ctr" data-t="${s.n}" data-s="${s.s}">0${s.s}</span></div><div class="sl">${s.l}</div><div class="sd">↑ ${s.d}</div></div>`).join('');
+
+// platform
+const plat=[
+  {n:'INAI Studio',t:'NO-CODE',c:'var(--ac)',d:'Drag-and-drop agent builder for ops teams. Visual flows, model picker, analytics. No engineers required.',f:['Visual flow builder','Multi-model selector','WhatsApp, Web, Slack, Voice','Real-time analytics','Built-in A/B testing']},
+  {n:'INAI Build',t:'MANAGED',c:'var(--blue)',d:'We build your agents for you. Discovery → development → deploy → optimize. 2-4 weeks, not 6 months.',f:['Discovery workshop','Custom agent architecture','Multi-channel deployment','Monthly optimization','Dedicated success manager']},
+  {n:'INAI Infra',t:'GPU COMPUTE',c:'var(--purple)',d:'The engine underneath. NVIDIA A100 inference, model routing, RAG pipeline, auto-scaling to zero.',f:['NVIDIA A100/H100 inference','Multi-model hot-swap routing','Vector DB + RAG pipeline','Observability + cost tracking','Auto-scaling to zero']},
+];
+document.getElementById('plat').innerHTML=plat.map((p,i)=>`<div class="rv pc" data-d="${i*80}" onmouseenter="this.style.borderColor='${p.c}40'" onmouseleave="this.style.borderColor='var(--border)'"><span class="m ct" style="color:${p.c};background:${p.c}18">${p.t}</span><h3 class="cn">${p.n}</h3><p class="cd">${p.d}</p>${p.f.map(f=>`<div class="cf">${ck(p.c)}<span>${f}</span></div>`).join('')}</div>`).join('');
+
+// integrations
+const ints=[{i:'💬',n:'WhatsApp'},{i:'🌐',n:'Web Chat'},{i:'💼',n:'Slack'},{i:'📧',n:'Email'},{i:'🎙️',n:'Voice/SIP'},{i:'📱',n:'SMS'},{i:'🔗',n:'Salesforce'},{i:'📋',n:'HubSpot'},{i:'🏗️',n:'Zendesk'},{i:'📊',n:'Freshdesk'},{i:'⚡',n:'Zapier'},{i:'🔌',n:'REST API'}];
+document.getElementById('intg').innerHTML=ints.map((x,j)=>`<div class="rv ic" data-d="${j*30}"><div class="ii">${x.i}</div><div class="im">${x.n}</div></div>`).join('');
+
+// tech
+const tech=[
+  {t:'NVIDIA GPU Inference',d:'A100/H100 accelerated inference from Lagos, Nairobi, Johannesburg. Sub-200ms p95. Production-grade from day one.',c:'var(--ac)'},
+  {t:'Multi-Model Routing',d:'GPT-4o, Claude, Llama 3, Mistral — route per agent, per turn, or per task. Hot-swap without downtime.',c:'var(--blue)'},
+  {t:'NVIDIA TensorRT-LLM',d:'Optimized model serving for maximum inference throughput on NVIDIA hardware. 3-5x faster than vanilla serving.',c:'var(--ac)'},
+  {t:'Africa-Local Compute',d:'Data centers in Lagos, Johannesburg, Nairobi. Data never leaves the continent unless you say so. NDPR, POPIA compliant.',c:'var(--purple)'},
+  {t:'Vector DB + RAG',d:'Built-in retrieval-augmented generation. Upload docs, we chunk, embed, and search at GPU speed. No Pinecone bill.',c:'var(--green)'},
+  {t:'Conversation Memory',d:'Persistent state across sessions. Long-term user memory, context window management, automatic summarization.',c:'var(--amber)'},
+];
+document.getElementById('tech').innerHTML=tech.map((f,i)=>`<div class="rv tc" data-d="${i*60}"><div class="to" style="background:${f.c}"></div><h3>${f.t}</h3><p>${f.d}</p></div>`).join('');
+
+// security
+const sec=[{i:'🔒',t:'SOC 2 Type II',d:'Audited annually. Report available on request.'},{i:'🛡️',t:'NDPR / POPIA',d:'Nigeria & South Africa data protection. Compliant by default.'},{i:'🔐',t:'AES-256 + TLS 1.3',d:'Encrypted at rest and in transit. Zero-trust architecture.'},{i:'👁️',t:'PII Auto-Redaction',d:'Sensitive data stripped before it reaches any model.'}];
+document.getElementById('secu').innerHTML=sec.map((s,i)=>`<div class="rv sc" data-d="${i*50}"><div class="sk">${s.i}</div><h4>${s.t}</h4><p>${s.d}</p></div>`).join('');
+
+// cases
+const cases=[
+  {t:'Customer Support',d:'Deflect 60%+ of tickets across WhatsApp, web, and voice. Multilingual — English, Yoruba, Swahili, Pidgin, French, Hausa.',tag:'Most popular',tc:'var(--ac)'},
+  {t:'Workflow Automation',d:'Document processing, approvals, data entry, system integrations. Replace manual ops with AI agents. No code.',tag:'High ROI',tc:'var(--green)'},
+  {t:'Sales & Onboarding',d:'Qualify leads on WhatsApp, guide onboarding, answer product questions 24/7. Trained on your knowledge base.',tag:'Revenue',tc:'var(--blue)'},
+  {t:'Internal Operations',d:'HR bots, IT helpdesk, policy lookup, training assistants. Deploy to Slack, Teams, or internal portals.',tag:'',tc:''},
+  {t:'Collections & Payments',d:'Payment reminders, debt follow-up, reconciliation across mobile money, bank transfers, and card channels.',tag:'Fintech',tc:'var(--amber)'},
+  {t:'Compliance & Regulatory',d:'Auto-respond to compliance queries, monitor policy adherence, generate audit-ready conversation logs.',tag:'',tc:''},
+];
+document.getElementById('cases').innerHTML=cases.map((f,i)=>`<div class="rv cr" data-d="${i*40}"><h3>${f.t}</h3><p>${f.d}</p>${f.tag?`<span class="cr-tag m" style="color:${f.tc};background:${f.tc}15">${f.tag}</span>`:''}</div>`).join('');
+
+// comparison
+const comp=[
+  ['Time to production','Days','6–12 months','Weeks'],['GPU inference',gk,xk,'Varies'],['Africa-local compute',gk,'Maybe',xk],['Multi-model routing',gk,'Custom build','Limited'],['WhatsApp-native',gk,'Custom build',gk],['Managed build option',gk,xk,xk],['NDPR + SOC 2',gk,'Your effort','Varies'],['Pricing','From $0','$$$+','Per-seat'],['Multilingual (Yoruba, Pidgin…)',gk,'Unlikely',xk],
+];
+document.getElementById('comp').innerHTML=comp.map(r=>`<div class="cpr"><div>${r[0]}</div><div class="chb">${r[1]}</div><div>${r[2]}</div><div>${r[3]}</div></div>`).join('');
+
+// testimonials — with metrics
+const test=[
+  {q:'"Deployed across 3 WhatsApp lines in one afternoon. 58% deflection in week one. My support team finally has breathing room."',n:'Adebayo K.',r:'VP Ops · Fintech · Lagos',c:'var(--ac)',metric:'58%',ml:'deflection in 7 days'},
+  {q:'"The only platform with local GPU inference AND NDPR compliance. We evaluated six options. INAI was the obvious choice."',n:'Amara N.',r:'CTO · Insuretech · Nairobi',c:'var(--blue)',metric:'89ms',ml:'p95 latency from Nairobi'},
+  {q:'"Collections agent went live in 3 weeks via INAI Build. Would have taken us 5 months in-house. ROI was instant."',n:'Kwame A.',r:'Head of Digital · Bank · Accra',c:'var(--purple)',metric:'3 wks',ml:'to production'},
+];
+document.getElementById('test').innerHTML=test.map((t,i)=>`<div class="rv tsc" data-d="${i*70}"><div class="tss">★★★★★</div><p class="tsq">${t.q}</p><div class="tsa"><div class="tsv" style="background:${t.c}20;color:${t.c}">${t.n[0]}</div><div><div class="tsn">${t.n}</div><div class="tsr">${t.r}</div></div></div><div class="tsc-metric"><b style="color:${t.c}">${t.metric}</b><span style="color:var(--tx3)">${t.ml}</span></div></div>`).join('');
+
+// pricing — AFRICA-MARKET
+const pric=[
+  {n:'Free',p:'$0',s:'forever',desc:'For solo builders and experiments.',f:['1 agent','500 conversations/mo','2 channels (WhatsApp + Web)','Community support','Shared GPU inference'],b:'Start free',cls:'s',pop:''},
+  {n:'Starter',p:'$29',s:'/mo',desc:'For small teams going live.',f:['3 agents','5K conversations/mo','All channels','Email support (24hr)','Shared GPU · 200ms p95'],b:'Start building',cls:'p',pop:''},
+  {n:'Growth',p:'$99',s:'/mo',desc:'For teams scaling fast.',f:['10 agents','25K conversations/mo','All channels + Voice','Priority support + SLA','Dedicated GPU · 100ms p95','Custom knowledge base','A/B testing'],b:'Start trial',cls:'bl',pop:'MOST POPULAR',featured:true},
+  {n:'Enterprise',p:'Custom',s:'',desc:'For orgs that need everything.',f:['Unlimited agents','Unlimited conversations','Managed build team','Dedicated GPU + SSO + SLA','On-prem / VPC deployment','NDPR legal opinion included','Dedicated success manager'],b:'Talk to sales',cls:'s',pop:''},
+];
+document.getElementById('pric').innerHTML=pric.map((p,i)=>`<div class="rv prc ${p.featured?'pop':''}" data-d="${i*70}">${p.featured?'<div class="prw prw-bl"></div>':''}${p.pop?`<div class="pr-pop" style="background:${p.featured?'var(--blue)':'var(--ac)'};color:#000">${p.pop}</div>`:''}<h3 class="prn">${p.n}</h3><div class="prr"><span class="prp">${p.p}</span><span class="prs">${p.s}</span></div><p class="pr-desc">${p.desc}</p>${p.f.map(f=>`<div class="prf">${gk}<span>${f}</span></div>`).join('')}<button class="prb ${p.cls}">${p.b}</button>${p.n==='Free'?'<p class="pr-note">No credit card required</p>':p.n==='Growth'?'<p class="pr-note">14-day free trial included</p>':''}</div>`).join('');
+
+// faq
+const faqs=[
+  {q:'How long to deploy an agent?',a:'Most teams go live same-day with Studio. If you use INAI Build (managed service), typical delivery is 2-4 weeks for complex enterprise agents.'},
+  {q:'Which models do you support?',a:'GPT-4o, Claude Sonnet/Opus, Llama 3.1, Mistral, and any OpenAI-compatible API. You can route different models per agent or per conversation turn. Hot-swap without downtime.'},
+  {q:'Where is my data stored?',a:'Africa-local by default — Lagos, Johannesburg, or Nairobi. EU and US regions also available. All data encrypted at rest (AES-256) and in transit (TLS 1.3). Your data never trains our models.'},
+  {q:'Can I bring my own model?',a:'Yes. Upload GGUF or ONNX models, or fine-tune supported base models on your data. We handle GPU serving via TensorRT-LLM.'},
+  {q:'Do you support mobile money payments?',a:'Yes. We accept card, bank transfer, and mobile money (via Paystack/Flutterwave). Enterprise clients can pay via invoice with NET-30 terms.'},
+  {q:'What languages do your agents support?',a:'English, Yoruba, Pidgin, Hausa, Igbo, Swahili, French, Arabic, Portuguese, Twi, Amharic, Zulu — and more via custom training. Agents can switch languages mid-conversation.'},
+  {q:'What if I exceed my conversation limit?',a:'We notify you at 80% usage. Overages are billed at a per-conversation rate (roughly ₦15-25 per conversation depending on plan). No surprise shutdowns.'},
+];
+document.getElementById('faqs').innerHTML=faqs.map((f,i)=>`<div class="rv fi" data-d="${i*30}"><div class="fqq" onclick="this.parentElement.classList.toggle('o')">${f.q}<span class="fa">+</span></div><div class="fqa"><p>${f.a}</p></div></div>`).join('');
+
+// scroll reveal
+document.querySelectorAll('.rv').forEach(el=>{new IntersectionObserver(([e])=>{if(e.isIntersecting)setTimeout(()=>el.classList.add('v'),el.dataset.d||0)},{threshold:.08}).observe(el)});
+
+// counters
+document.querySelectorAll('.ctr').forEach(el=>{new IntersectionObserver(([e])=>{if(!e.isIntersecting||el.dataset.done)return;el.dataset.done='1';const t=+el.dataset.t,s=el.dataset.s||'';let c=0;const step=t/60;const iv=setInterval(()=>{c+=step;if(c>=t){el.textContent=t+s;clearInterval(iv)}else el.textContent=Math.floor(c)+s},20)},{threshold:.5}).observe(el)});
+
+// cta
+function sub(){if(document.getElementById('cte').value){document.getElementById('ctf').style.display='none';document.getElementById('ctk').style.display='flex'}}
+</script>
+</body>
+</html>

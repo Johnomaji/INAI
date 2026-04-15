@@ -14,6 +14,7 @@ export default function Security() {
         <RevealOnScroll>
           <p className="mono section-tag">Security &amp; Compliance</p>
           <h2 className="section-title">Enterprise-grade. Africa-compliant.</h2>
+          <p className="section-sub">End-to-end protection, data sovereignty, and audit-ready compliance — built in from day one.</p>
         </RevealOnScroll>
 
         <div className="sec-grid">

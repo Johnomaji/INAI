@@ -4,7 +4,13 @@ export default function Footer() {
       borderTop: '1px solid rgba(26,26,40,0.5)',
       padding: '32px 40px 40px',
     }}>
-      <div style={{
+      <style>{`
+        @media (max-width: 640px) {
+          .footer-inner { flex-direction: column; align-items: flex-start !important; gap: 20px !important; }
+          .footer-links { flex-wrap: wrap; gap: 16px !important; }
+        }
+      `}</style>
+      <div className="footer-inner" style={{
         maxWidth: '1100px', margin: '0 auto',
         display: 'flex', justifyContent: 'space-between',
         alignItems: 'center', flexWrap: 'wrap', gap: '14px',
@@ -21,7 +27,7 @@ export default function Footer() {
           <span style={{ fontWeight: 600, fontSize: '12.5px', color: 'var(--tx2)' }}>INAI</span>
         </div>
 
-        <div style={{ display: 'flex', gap: '22px', alignItems: 'center' }}>
+        <div className="footer-links" style={{ display: 'flex', gap: '22px', alignItems: 'center' }}>
           {['GitHub', 'Twitter', 'LinkedIn', 'Status'].map((link) => (
             <a key={link} href="#" className="footer-link">{link}</a>
           ))}

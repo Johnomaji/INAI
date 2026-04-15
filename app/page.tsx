@@ -13,9 +13,11 @@ import Compare from './components/Compare'
 import Testimonials from './components/Testimonials'
 import Pricing from './components/Pricing'
 import BackedBy from './components/BackedBy'
+import Team from './components/Team'
 import FAQ from './components/FAQ'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 
 export default function Home() {
   return (
@@ -36,10 +38,12 @@ export default function Home() {
         <Testimonials />
         <Pricing />
         <BackedBy />
+        <Team />
         <FAQ />
         <CTA />
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   )
 }

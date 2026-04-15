@@ -32,7 +32,7 @@ const platforms = [
 
 export default function Platform() {
   return (
-    <section style={{ padding: '88px 0', borderTop: '1px solid rgba(26,26,40,0.4)' }}>
+    <section id="platform" style={{ padding: '88px 0', borderTop: '1px solid rgba(26,26,40,0.4)' }}>
       <div className="wrap">
         <RevealOnScroll>
           <p className="mono section-tag">Platform</p>

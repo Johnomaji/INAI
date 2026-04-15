@@ -22,20 +22,31 @@ export default function UseCases() {
           {cases.map((c, i) => (
             <RevealOnScroll key={i} delay={i * 40}>
               <div className="case-row">
+                {/* Title column */}
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ac)', flexShrink: 0, marginTop: '6px' }} />
-                  <h3 style={{ fontSize: '14px', fontWeight: 600, color: 'var(--white)' }}>{c.t}</h3>
+                  <div className="case-dot" />
+                  <h3 style={{ fontSize: '14px', fontWeight: 600, color: 'var(--white)', lineHeight: 1.4 }}>
+                    {c.t}
+                  </h3>
                 </div>
-                <p style={{ fontSize: '13px', color: 'var(--tx2)', lineHeight: 1.6 }}>{c.d}</p>
+                {/* Description column */}
+                <p style={{ fontSize: '13px', color: 'var(--tx2)', lineHeight: 1.65 }}>{c.d}</p>
               </div>
             </RevealOnScroll>
           ))}
         </div>
-
-        <style>{`
-          @media (max-width: 640px) { .case-row { grid-template-columns: 1fr; gap: 6px; } }
-        `}</style>
       </div>
+
+      <style>{`
+        .case-dot {
+          width: 6px; height: 6px; border-radius: 50%;
+          background: var(--ac); flex-shrink: 0;
+          margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+          .case-dot { margin-top: 4px; }
+        }
+      `}</style>
     </section>
   )
 }

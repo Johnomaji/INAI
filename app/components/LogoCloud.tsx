@@ -1,3 +1,6 @@
+'use client'
+import { useEffect, useRef } from 'react'
+
 const companies = [
   'Flutterwave', 'MTN', 'Access Bank', 'Jumia', 'Safaricom',
   'Interswitch', 'Paystack', 'Andela', 'Sterling Bank', 'Kuda',
@@ -12,6 +15,16 @@ const sep = (
 
 export default function LogoCloud() {
   const doubled = [...companies, ...companies]
+  const trackRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const onVisibility = () => {
+      if (!trackRef.current) return
+      trackRef.current.style.animationPlayState = document.hidden ? 'paused' : 'running'
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => document.removeEventListener('visibilitychange', onVisibility)
+  }, [])
 
   return (
     <div style={{
@@ -43,6 +56,7 @@ export default function LogoCloud() {
 
       <div style={{ overflow: 'hidden' }}>
         <div
+          ref={trackRef}
           className="logo-track"
           style={{
             display: 'flex', gap: '36px', alignItems: 'center',

@@ -1,3 +1,5 @@
+'use client'
+
 // Agent card sub-components
 function SupportCard() {
   const bars = [
@@ -224,11 +226,11 @@ export default function Hero() {
 
             {/* CTAs */}
             <div style={{ display: 'flex', gap: '10px', marginBottom: '28px', flexWrap: 'wrap' }}>
-              <button className="btn-primary">
+              <button className="btn-primary" onClick={() => document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}>
                 Start building — it&apos;s free
               </button>
-              <button className="btn-secondary">
-                Book demo
+              <button className="btn-secondary" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
+                View pricing
               </button>
             </div>
 
@@ -261,13 +263,13 @@ export default function Hero() {
                 ))}
                 <span className="mono" style={{ fontSize: '10.5px', color: 'var(--tx3)', marginLeft: '8px' }}>inai-cli</span>
               </div>
-              <div className="mono" style={{ padding: '16px 18px', fontSize: '12.5px', lineHeight: 2 }}>
-                <div style={{ color: 'var(--tx3)' }}>
+              <div className="mono" style={{ padding: '16px 18px', fontSize: '12.5px', lineHeight: 2, overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                <div style={{ color: 'var(--tx3)', whiteSpace: 'nowrap' }}>
                   <span style={{ color: 'var(--ac)' }}>$</span>
                   {' '}inai deploy --agent support-bot --model claude-sonnet --gpu a100
                 </div>
-                <div style={{ color: 'var(--green)' }}>✓ Trained on 12K docs · 3 channels · GPU inference active</div>
-                <div style={{ color: 'var(--tx)' }}>
+                <div style={{ color: 'var(--green)', whiteSpace: 'nowrap' }}>✓ Trained on 12K docs · 3 channels · GPU inference active</div>
+                <div style={{ color: 'var(--tx)', whiteSpace: 'nowrap' }}>
                   → <span style={{ color: 'var(--ac)' }}>live</span> at app.inai.cloud/agents/support-bot
                 </div>
                 <span style={{ color: 'var(--tx3)', animation: 'blink 1.1s infinite' }}>▌</span>

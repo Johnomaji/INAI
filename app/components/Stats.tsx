@@ -51,7 +51,7 @@ export default function Stats() {
           {stats.map((s, i) => (
             <div key={i} style={{ position: 'relative', paddingLeft: i > 0 ? '24px' : undefined }}>
               {i > 0 && (
-                <div style={{
+                <div className="stats-divider" style={{
                   position: 'absolute', left: 0, top: '8px', bottom: '8px',
                   width: '1px', background: 'rgba(26,26,40,0.8)',
                 }} />

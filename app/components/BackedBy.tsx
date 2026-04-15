@@ -27,11 +27,13 @@ export default function BackedBy() {
                 alignItems: 'center', gap: '8px',
               }}>
                 <div style={{
-                  width: '52px', height: '52px', borderRadius: '12px',
+                  width: '56px', height: '56px', borderRadius: '14px',
                   background: b.bg, color: b.color,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: b.abbr.length > 2 ? '13px' : '16px',
+                  fontSize: b.abbr.length > 2 ? '13px' : '17px',
                   fontWeight: 800, letterSpacing: '-0.03em',
+                  border: `1px solid ${b.color}30`,
+                  boxShadow: `0 0 18px ${b.color}18, inset 0 1px 0 ${b.color}20`,
                 }}>
                   {b.abbr}
                 </div>

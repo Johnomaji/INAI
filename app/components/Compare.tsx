@@ -37,6 +37,7 @@ export default function Compare() {
         </RevealOnScroll>
 
         <RevealOnScroll delay={80}>
+          <div className="compare-scroll-wrap">
           <div className="compare-table">
             {/* Header */}
             <div className="compare-header">
@@ -82,7 +83,19 @@ export default function Compare() {
               </div>
             ))}
           </div>
+          </div>
         </RevealOnScroll>
+
+        <style>{`
+          .compare-scroll-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 14px;
+          }
+          .compare-scroll-wrap .compare-table {
+            min-width: 560px;
+          }
+        `}</style>
       </div>
     </section>
   )

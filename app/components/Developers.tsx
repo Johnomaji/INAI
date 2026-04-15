@@ -49,7 +49,7 @@ export default function Developers() {
   const [tab, setTab] = useState<'python' | 'curl'>('python')
 
   return (
-    <section style={{ padding: '88px 0' }}>
+    <section id="docs" style={{ padding: '88px 0' }}>
       <div className="wrap">
         <RevealOnScroll>
           <p className="mono section-tag">Developers</p>

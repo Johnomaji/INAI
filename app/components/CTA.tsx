@@ -11,7 +11,7 @@ export default function CTA() {
   }
 
   return (
-    <section style={{ padding: '20px 0 88px' }}>
+    <section id="cta" style={{ padding: '20px 0 88px' }}>
       <div className="wrap">
         <RevealOnScroll>
           <div style={{
@@ -67,7 +67,7 @@ export default function CTA() {
               </p>
 
               {!submitted ? (
-                <div style={{
+                <div className="cta-form" style={{
                   display: 'flex', gap: '8px',
                   justifyContent: 'center', maxWidth: '380px',
                   margin: '0 auto',
@@ -108,6 +108,12 @@ export default function CTA() {
           </div>
         </RevealOnScroll>
       </div>
+      <style>{`
+        @media (max-width: 480px) {
+          .cta-form { flex-direction: column; align-items: stretch; }
+          .cta-form .btn-primary { width: 100%; justify-content: center; }
+        }
+      `}</style>
     </section>
   )
 }
