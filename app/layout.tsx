@@ -1,6 +1,9 @@
 import type { Metadata } from "next"
 import { Plus_Jakarta_Sans, Fira_Code } from "next/font/google"
 import "./globals.css"
+import Nav from "./components/Nav"
+import Footer from "./components/Footer"
+import ScrollToTop from "./components/ScrollToTop"
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -27,7 +30,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${jakarta.variable} ${fira.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Nav />
+        {children}
+        <Footer />
+        <ScrollToTop />
+      </body>
     </html>
   )
 }
