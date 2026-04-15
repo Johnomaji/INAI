@@ -9,7 +9,7 @@ const members = [
     initial: 'MO',
   },
   {
-    name: 'Mery Ugwu',
+    name: 'Mercy Ugwu',
     role: 'AI/ML Engineer',
     bio: 'Designs and trains the models powering INAI agents. Obsessed with low-latency inference on African infrastructure.',
     color: 'var(--blue)',
